@@ -8,6 +8,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Udemy.TodoAppNTier.Business.DependencyResolvers.Microsoft;
+using Udemy.TodoAppNTier.DataAccess.Interfaces;
+using Udemy.TodoAppNTier.DataAccess.Repositories;
+using Udemy.TodoAppNTier.Entities.Concrete;
 
 namespace Udemy.TodoAppNTier.WebUI
 {
@@ -25,6 +28,10 @@ namespace Udemy.TodoAppNTier.WebUI
         {
             services.AddControllersWithViews();
             services.AddDependencies();
+            //services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+
+            //services.AddTransient<IRepository<Work>, Repository<Work>>();
+            
 
         }
 

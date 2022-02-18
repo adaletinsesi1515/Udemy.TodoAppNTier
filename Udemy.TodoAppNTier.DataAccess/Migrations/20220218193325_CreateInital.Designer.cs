@@ -9,15 +9,15 @@ using Udemy.TodoAppNTier.DataAccess.Contexts;
 namespace Udemy.TodoAppNTier.DataAccess.Migrations
 {
     [DbContext(typeof(TodoContext))]
-    [Migration("20220218102341_InıtialCreate")]
-    partial class InıtialCreate
+    [Migration("20220218193325_CreateInital")]
+    partial class CreateInital
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.13")
+                .HasAnnotation("ProductVersion", "5.0.14")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("Udemy.TodoAppNTier.Entities.Concrete.Work", b =>

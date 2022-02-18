@@ -2,7 +2,7 @@
 
 namespace Udemy.TodoAppNTier.DataAccess.Migrations
 {
-    public partial class InıtialCreate : Migration
+    public partial class CreateInital : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
