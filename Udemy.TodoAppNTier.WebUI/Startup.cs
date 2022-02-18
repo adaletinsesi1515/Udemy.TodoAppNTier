@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Udemy.TodoAppNTier.Business.DependencyResolvers.Microsoft;
 
 namespace Udemy.TodoAppNTier.WebUI
 {
@@ -23,6 +24,8 @@ namespace Udemy.TodoAppNTier.WebUI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddDependencies();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
