@@ -5,33 +5,27 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Udemy.TodoAppNTier.Business.Interfaces;
 using Udemy.TodoAppNTier.WebUI.Models;
 
 namespace Udemy.TodoAppNTier.WebUI.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        private readonly IWorkServices _workServices;
+
+        public HomeController(IWorkServices workServices)
         {
-            _logger = logger;
+            _workServices = workServices;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var worklist = await _workServices.GetAll();
+            return View(worklist);
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+        
     }
 }
