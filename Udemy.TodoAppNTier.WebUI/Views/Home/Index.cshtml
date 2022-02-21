@@ -13,14 +13,17 @@
 
 
 </head>
-<body>
-    <p class="text-danger">TEST</p>
+<body>    
     <div class="container my-2">
+        <div class="text-end my-2">
+            <a asp-action="Create" asp-controller="Home" class="btn btn-primary btn-sm">Yeni iş ekle</a>
+        </div>
         <table class="table table-hover table-bordered table-sm">
             <thead>
                 <tr>
                     <th>İş</th>
                     <th>Durumu</th>
+                    <th>İşlem</th>
                 </tr>
             </thead>
             <tbody>
@@ -29,6 +32,7 @@
                     <tr>
                         <td>@item.Definition</td>
                         <td>@(item.IsCompleted?"Tamamlandı":"Tamamlanmadı")</td>
+                        <td><a asp-action="Update" asp-controller="Home" asp-route-id="@item.Id" class="btn btn-warning">Güncelleme</a></td>
                     </tr>
                 }
             </tbody>

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Udemy.TodoAppNtier.Dtos.WorkDto;
 using Udemy.TodoAppNTier.Business.Interfaces;
 using Udemy.TodoAppNTier.WebUI.Models;
 
@@ -26,6 +27,46 @@ namespace Udemy.TodoAppNTier.WebUI.Controllers
             return View(worklist);
         }
 
-        
+        public IActionResult Create()
+        {
+            return View(new WorkCreateDto());
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(WorkCreateDto Dto)
+        {
+            if (ModelState.IsValid)
+            {
+                await _workServices.Create(Dto);
+                return RedirectToAction("Index");
+            }            
+            return View();
+        }
+
+        public async Task<IActionResult> Update(int id)
+        {
+            var dto = await _workServices.GetById(id);
+            return View(new WorkUpdateDto
+            {
+                Id = dto.Id,
+                Definition = dto.Definition,
+                IsCompleted = dto.IsCompleted
+            });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Update(WorkUpdateDto dto)
+        {
+            if (ModelState.IsValid)
+            {
+                await _workServices.Update(dto);
+                return RedirectToAction("Index");
+            }
+            return View(dto);
+
+        }
+
+
+
     }
 }

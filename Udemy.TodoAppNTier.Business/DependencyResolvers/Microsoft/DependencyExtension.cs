@@ -2,6 +2,8 @@
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using System;
 using Udemy.TodoAppNTier.Business.Interfaces;
 using Udemy.TodoAppNTier.Business.Services;
 using Udemy.TodoAppNTier.DataAccess.Contexts;
@@ -16,6 +18,7 @@ namespace Udemy.TodoAppNTier.Business.DependencyResolvers.Microsoft
             services.AddDbContext<TodoContext>(opt =>
             {
                 opt.UseSqlServer("server=AB01500-5000; database=TodoDb; integrated security=true;");
+                opt.LogTo(Console.WriteLine, LogLevel.Information); 
             });
 
             services.AddScoped<IUow, Uow>();
