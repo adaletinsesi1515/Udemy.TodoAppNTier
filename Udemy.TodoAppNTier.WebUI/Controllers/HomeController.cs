@@ -1,13 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
 using System.Threading.Tasks;
 using Udemy.TodoAppNtier.Dtos.WorkDto;
 using Udemy.TodoAppNTier.Business.Interfaces;
-using Udemy.TodoAppNTier.WebUI.Models;
+
 
 namespace Udemy.TodoAppNTier.WebUI.Controllers
 {
@@ -45,13 +40,7 @@ namespace Udemy.TodoAppNTier.WebUI.Controllers
 
         public async Task<IActionResult> Update(int id)
         {
-            var dto = await _workServices.GetById(id);
-            return View(new WorkUpdateDto
-            {
-                Id = dto.Id,
-                Definition = dto.Definition,
-                IsCompleted = dto.IsCompleted
-            });
+            return View(await _workServices.GetById<WorkUpdateDto>(id));
         }
 
         [HttpPost]
