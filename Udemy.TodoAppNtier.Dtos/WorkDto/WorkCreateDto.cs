@@ -9,8 +9,7 @@ using Udemy.TodoAppNtier.Dtos.Interfaces;
 namespace Udemy.TodoAppNtier.Dtos.WorkDto
 {
     public class WorkCreateDto : IDto
-    {
-        [Required(ErrorMessage ="İş tanımını boş geçemezsiniz...")]
+    {   
         public string Definition { get; set; }
         public bool IsCompleted { get; set; }
     }

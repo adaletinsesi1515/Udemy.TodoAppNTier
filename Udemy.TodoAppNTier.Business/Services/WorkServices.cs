@@ -9,6 +9,7 @@ using Udemy.TodoAppNTier.DataAccess.UnitofWork;
 using Udemy.TodoAppNtier.Dtos.Interfaces;
 using Udemy.TodoAppNtier.Dtos.WorkDto;
 using Udemy.TodoAppNTier.Entities.Concrete;
+using Udemy.TodoAppNTier.Business.ValidationRules;
 
 namespace Udemy.TodoAppNTier.Business.Services
 {
@@ -35,8 +36,13 @@ namespace Udemy.TodoAppNTier.Business.Services
 
         public async Task Create(WorkCreateDto dto)
         {
-            await _uow.GetRepository<Work>().Create(_mapper.Map<Work>(dto));
-            await _uow.SaveChanges();
+            var validator = new WorkCreateDtoValidator();
+            var validationResult = validator.Validate(dto);
+            if (validationResult.IsValid)
+            {
+                await _uow.GetRepository<Work>().Create(_mapper.Map<Work>(dto));
+                await _uow.SaveChanges();
+            }            
         }
 
         public async Task Remove(int id)
